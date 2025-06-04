@@ -13,28 +13,13 @@ const calculatetBtn = document.getElementById('calculateBtn');
 
 document.addEventListener('DOMContentLoaded', () => {
   // Use apartmentsData directly
-  console.log(apartmentsData);
+  // console.log(apartmentsData);
   renderApartments(apartmentsData);
 
 });
 
 
-calculatetBtn.addEventListener('click', () => {
-  const apartments = document.querySelectorAll('.apartment-item');
-  // console.log(apartments);
-  let totalCoverage =0;
-  const apartmentsData = [];
-  apartments.forEach(apartment => {
-    totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
-    apartmentsData.push({
-      apartmentName: apartment.querySelector('.apartment-name').value,
-      millimeters: apartment.querySelector('.apartment-sqm').value,
-    });
-  })
-  console.log(apartmentsData);
-  console.log(totalCoverage);
-
-})
+calculatetBtn.addEventListener('click', calculateFees )
 
 
 // Simple CSV parser: converts CSV string to an array of objects
@@ -50,6 +35,14 @@ calculatetBtn.addEventListener('click', () => {
 //   });
 // }
 
+/**
+ * Renders a list of apartment objects into the DOM.
+ *
+ * @param {Array<Object>} apartments - An array of apartment objects to be rendered. Each object should have the properties:
+ *        - apartmentName {string}: The name or identifier of the apartment.
+ *        - millimeters {number}: The size or measurement value associated with the apartment.
+ * @return {void} This method does not return a value.
+ */
 function renderApartments(apartments) {
   listContainer.innerHTML = ''; // Clear previous content
   apartments.forEach(apartment => {
@@ -78,5 +71,37 @@ function renderApartments(apartments) {
 `;
     listContainer.appendChild(item);
   });
+}
+
+function calculateFees() {
+  {
+    const apartments = document.querySelectorAll('.apartment-item');
+    // console.log(apartments);
+    let totalCoverage =0;
+    const apartmentsData = [];
+    // This loop populates the apartmentsData array with each apartment's name and millimeters
+    apartments.forEach(apartment => {
+      totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
+      apartmentsData.push({
+        apartmentName: apartment.querySelector('.apartment-name').value,
+        millimeters: apartment.querySelector('.apartment-sqm').value,
+      });
+    })
+
+    const month = document.getElementById('month').value;
+    const year = document.getElementById('year').value;
+    const cleaningFee = parseFloat(document.getElementById('cleaning').value) || 0;
+    const electricityFee = parseFloat(document.getElementById('electricity').value) || 0;
+    const elevatorFee = parseFloat(document.getElementById('elevator').value) || 0;
+    const waterFee = parseFloat(document.getElementById('water').value) || 0;
+    const otherFee = parseFloat(document.getElementById('other').value) || 0;
+
+    const totalFees = cleaningFee + electricityFee + elevatorFee + waterFee + otherFee;
+
+    console.log(month, year, totalCoverage, totalFees);
+    // console.log(apartmentsData);
+    // console.log(totalCoverage);
+
+  }
 }
 
