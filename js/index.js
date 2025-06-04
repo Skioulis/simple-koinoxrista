@@ -1,15 +1,23 @@
 const listContainer = document.getElementById('apartmentsList');
 const calculatetBtn = document.getElementById('calculateBtn');
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   fetch('/public/data/data.csv') // Replace with your CSV path
+//     .then(response => response.text())
+//     .then(csvText => {
+//       const data = parseCSV(csvText);
+//       renderApartments(data);
+//     })
+//     .catch(error => console.error('Error loading CSV:', error));
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/public/data/data.csv') // Replace with your CSV path
-    .then(response => response.text())
-    .then(csvText => {
-      const data = parseCSV(csvText);
-      renderApartments(data);
-    })
-    .catch(error => console.error('Error loading CSV:', error));
+  // Use apartmentsData directly
+  console.log(apartmentsData);
+  renderApartments(apartmentsData);
+
 });
+
 
 calculatetBtn.addEventListener('click', () => {
   const apartments = document.querySelectorAll('.apartment-item');
@@ -30,17 +38,17 @@ calculatetBtn.addEventListener('click', () => {
 
 
 // Simple CSV parser: converts CSV string to an array of objects
-function parseCSV(csvString) {
-  const lines = csvString.trim().split('\n');
-  const headers = lines[0].split(',');
-  return lines.slice(1).map(line => {
-    const values = line.split(',');
-    return headers.reduce((obj, header, i) => {
-      obj[header.trim()] = values[i].trim();
-      return obj;
-    }, {});
-  });
-}
+// function parseCSV(csvString) {
+//   const lines = csvString.trim().split('\n');
+//   const headers = lines[0].split(',');
+//   return lines.slice(1).map(line => {
+//     const values = line.split(',');
+//     return headers.reduce((obj, header, i) => {
+//       obj[header.trim()] = values[i].trim();
+//       return obj;
+//     }, {});
+//   });
+// }
 
 function renderApartments(apartments) {
   listContainer.innerHTML = ''; // Clear previous content
