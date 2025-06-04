@@ -55,6 +55,11 @@
                                     <option value="10">Οκτώβριος</option>
                                     <option value="11">Νοέμβριος</option>
                                     <option value="12">Δεκέμβριος</option>
+                                    <script>
+                                        const prevMonth = new Date().getMonth();
+                                        console.log(prevMonth);
+                                        document.getElementById('month').value = prevMonth || '1';
+                                    </script>
                                 </select>
                             </div>
                         </div>
@@ -62,10 +67,14 @@
                             <div class="form-group">
                                 <label for="year">Έτος</label>
                                 <select class="form-select" id="year">
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
+                                    <script>
+                                        const currentYear = new Date().getFullYear();
+                                        document.write(`
+                                            <option value="${currentYear - 1}">${currentYear - 1}</option>
+                                            <option value="${currentYear}" selected>${currentYear}</option>
+                                            <option value="${currentYear + 1}">${currentYear + 1}</option>
+                                        `);
+                                    </script>
                                 </select>
                             </div>
                         </div>
@@ -103,27 +112,27 @@
                 <div class="card-body">
                     <div id="apartmentsList">
                         <!-- Apartments will be added here dynamically -->
-                        <div class="apartment-item mb-3 p-3 border rounded">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Όνομα/Αριθμός</label>
-                                        <input type="text" class="form-control apartment-name" placeholder="π.χ. Διαμ. 1">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Χιλιοστά (‰)</label>
-                                        <input type="number" class="form-control apartment-sqm" step="0.01" min="0">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button type="button" class="btn btn-sm btn-danger remove-apartment mt-2">Αφαίρεση</button>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="apartment-item mb-3 p-3 border rounded">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>Όνομα/Αριθμός</label>-->
+<!--                                        <input type="text" class="form-control apartment-name" placeholder="π.χ. Διαμ. 1">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label>Χιλιοστά (‰)</label>-->
+<!--                                        <input type="number" class="form-control apartment-sqm" step="0.01" min="0">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-12 d-flex justify-content-end">-->
+<!--                                    <button type="button" class="btn btn-sm btn-danger remove-apartment mt-2">Αφαίρεση</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -193,7 +202,6 @@
 
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
-<script src="js/db.js"></script>
-<script src="js/koinoxrista.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
