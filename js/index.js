@@ -1,25 +1,32 @@
-
-
-let apartments = [];
 const listContainer = document.getElementById('apartmentsList');
-
+const calculatetBtn = document.getElementById('calculateBtn');
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('/public/data/data.csv') // Replace with your CSV path
     .then(response => response.text())
     .then(csvText => {
       const data = parseCSV(csvText);
-      // console.log(data);
-      // const listContainer = document.getElementById('apartmentsList');
       renderApartments(data);
-
-      // You can now use the parsed CSV data
-      // For example, render apartments to your page here
-      // updateApartmentsList(data);
     })
     .catch(error => console.error('Error loading CSV:', error));
 });
 
+calculatetBtn.addEventListener('click', () => {
+  const apartments = document.querySelectorAll('.apartment-item');
+  // console.log(apartments);
+  let totalCoverage =0;
+  const apartmentsData = [];
+  apartments.forEach(apartment => {
+    totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
+    apartmentsData.push({
+      apartmentName: apartment.querySelector('.apartment-name').value,
+      millimeters: apartment.querySelector('.apartment-sqm').value,
+    });
+  })
+  console.log(apartmentsData);
+  console.log(totalCoverage);
+
+})
 
 
 // Simple CSV parser: converts CSV string to an array of objects
@@ -39,7 +46,7 @@ function renderApartments(apartments) {
   listContainer.innerHTML = ''; // Clear previous content
   apartments.forEach(apartment => {
     const item = document.createElement('div');
-    item.className = 'apartment-item';
+    // item.className = 'apartment-item';
     item.innerHTML = `
       
         <div class="apartment-item mb-3 p-3 border rounded">
@@ -52,19 +59,16 @@ function renderApartments(apartments) {
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Χιλιοστά (‰)</label>
+                                        <label>Εμβαδόν / Χιλιοστά (‰)</label>
                                         <input type="number" class="form-control apartment-sqm" step="0.01" min="0" value="${apartment.millimeters}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button type="button" class="btn btn-sm btn-danger remove-apartment mt-2">Αφαίρεση</button>
-                                </div>
-                            </div>
+                           
                         </div>    
 
 `;
     listContainer.appendChild(item);
   });
 }
+
