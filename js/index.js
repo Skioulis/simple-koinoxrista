@@ -2,6 +2,8 @@ const listContainer = document.getElementById('apartmentsList');
 const calculatetBtn = document.getElementById('calculateBtn');
 const resultsBody = document.getElementById('resultsBody');
 const totalSqmAmount = document.getElementById('totalSqmAmount');
+const printBtn = document.getElementById('printBtn');
+
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   fetch('/public/data/data.csv') // Replace with your CSV path
@@ -21,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-calculatetBtn.addEventListener('click', calculateFees )
+calculatetBtn.addEventListener('click', calculateFees );
+printBtn.addEventListener('click', printResults);
 
 
 /**
@@ -219,13 +222,78 @@ function calculateFees() {
     console.log(apartmentsData); //  TODO DELETE
     console.log(sumOfFees);//  TODO DELETE
     console.log(month, year, totalCoverage, totalFees);//  TODO DELETE
-
-
-
-
     // console.log(apartmentsData);
     // console.log(totalCoverage);
 
   }
+
+}
+
+function printResults() {
+  // First make sure we have results to print
+  if (document.querySelectorAll('#resultsBody tr').length === 0) {
+    alert('Παρακαλώ υπολογίστε πρώτα τα κοινόχρηστα για να εκτυπώσετε τα αποτελέσματα!');
+    return;
+  }
+
+  // Get the selected month and year
+  const monthValue = document.getElementById('month').value;
+  const yearValue = document.getElementById('year').value;
+
+  // Get the month name in Greek
+  const monthNames = [
+    'Ιανουάριος', 'Φεβρουάριος', 'Μάρτιος', 'Απρίλιος', 'Μάιος', 'Ιούνιος',
+    'Ιούλιος', 'Αύγουστος', 'Σεπτέμβριος', 'Οκτώβριος', 'Νοέμβριος', 'Δεκέμβριος'
+  ];
+  const monthName = monthNames[parseInt(monthValue) - 1];
+
+  // Create a formatted date string
+  const formattedDate = `${monthName} ${yearValue}`;
+
+  // Create a printable version
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Κοινόχρηστα - Εκτύπωση</title>
+                <link href="css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { padding: 20px; }
+                    @media print {
+                        .no-print { display: none; }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1 class="text-center mb-4">Υπολογισμός Κοινοχρήστων</h1>
+                    <p class="text-center mb-4">Περίοδος: ${formattedDate}</p>
+
+                    <h4>Έξοδα:</h4>
+                    <ul>
+                        <li>Καθαριότητα: ${document.getElementById('cleaning').value || '0'} €</li>
+                        <li>Ρεύμα Κοινόχρηστων: ${document.getElementById('electricity').value || '0'} €</li>
+                        <li>Συντήρηση Ανελκυστήρα: ${document.getElementById('elevator').value || '0'} €</li>
+                        <li>Νερό: ${document.getElementById('water').value || '0'} €</li>
+                        <li>Άλλα Έξοδα: ${document.getElementById('other').value || '0'} €</li>
+                    </ul>
+
+                    <h4>Αποτελέσματα:</h4>
+                    <div class="table-responsive">
+                        ${document.querySelector('.table-responsive').innerHTML}
+                    </div>
+
+                    <div class="row mt-4 no-print">
+                        <div class="col-12 text-center">
+                            <button onclick="window.print()" class="btn btn-primary">Εκτύπωση</button>
+                            <button onclick="window.close()" class="btn btn-secondary">Κλείσιμο</button>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+  printWindow.document.close();
 }
 
