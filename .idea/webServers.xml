@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="95f4ecc9-4fa0-452f-96ee-bb9ce16c660d" name="hostinger" url="https://koinoxrista.tripevo.net/">
+        <fileTransfer rootFolder="/home/u641227976/domains/koinoxrista.tripevo.net/public_html" accessType="SFTP" host="145.14.151.77" port="65002" sshConfigId="0f50ed88-8e91-4501-8b7e-56d8662d37fc" sshConfig="u641227976@145.14.151.77:65002 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
