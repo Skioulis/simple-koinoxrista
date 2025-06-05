@@ -159,6 +159,11 @@ function renderApartments(apartments) {
  * - Element: totalSqmAmount (for displaying total fees)
  *
  * @notes
+ * - All monetary values are rounded to 2 decimal places
+ * - Invalid numeric inputs default to 0
+ * - Results are displayed in euros (€)
+ * - Clears previous results before displaying new ones
+ */
 
 function calculateFees() {
   {
