@@ -221,11 +221,7 @@ function calculateFees() {
     })
     totalSqmAmount.textContent = totalFees;
 
-    console.log(apartmentsData); //  TODO DELETE
-    console.log(sumOfFees);//  TODO DELETE
-    console.log(month, year, totalCoverage, totalFees);//  TODO DELETE
-    // console.log(apartmentsData);
-    // console.log(totalCoverage);
+
 
   }
 
