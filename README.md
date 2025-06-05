@@ -1,4 +1,4 @@
-# Κοινόχρηστα Υπολογιστής
+# Maintenance fees
 
 A web application for easily calculating and distributing shared apartment building expenses (κοινόχρηστα). Users can enter monthly costs and apartment shares, and the tool automatically calculates the amount each apartment owes. The interface is in Greek and designed for ease of use.
 
@@ -6,7 +6,7 @@ A web application for easily calculating and distributing shared apartment build
 
 - **User-friendly interface in Greek**
 - **Enter monthly shared expenses:** Cleaning, electricity, elevator maintenance, water, and other costs
-- **Add apartments and their shares** (in ‰ - per mille)
+- **Add apartments and their shares** (in ‰ - per sm)
 - **Instant calculation per apartment**
 - **Responsive design with Bootstrap**
 

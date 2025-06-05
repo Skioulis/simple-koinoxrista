@@ -1,9 +1,9 @@
 const apartmentsData = [
-    { apartmentName: "ΤΣΑΝΤΕΚΙΔΗΣ", millimeters: 260.61 },
-    { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 410.4 },
-    { apartmentName: "ΜΗΤΣΙΟΥ", millimeters: 122.39 },
-    { apartmentName: "ΧΑΛΗΣ", millimeters: 60.33 },
-    { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 146.27 }
+    { apartmentName: "ΤΣΑΝΤΕΚΙΔΗΣ", millimeters: 217.61 },
+    { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 420.4 },
+    { apartmentName: "ΜΗΤΣΙΟΥ", millimeters: 133.39 },
+    { apartmentName: "ΧΑΛΗΣ", millimeters: 71.33 },
+    { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27 }
 ];
 
 // const greekMonths = [];
