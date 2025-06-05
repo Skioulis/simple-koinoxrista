@@ -1,8 +1,9 @@
 const listContainer = document.getElementById('apartmentsList');
-const calculatetBtn = document.getElementById('calculateBtn');
+const calculateBtn = document.getElementById('calculateBtn');
 const resultsBody = document.getElementById('resultsBody');
 const totalSqmAmount = document.getElementById('totalSqmAmount');
 const printBtn = document.getElementById('printBtn');
+const resetBtn = document.getElementById('resetBtn');
 
 
 // document.addEventListener('DOMContentLoaded', () => {
@@ -23,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-calculatetBtn.addEventListener('click', calculateFees );
+calculateBtn.addEventListener('click', calculateFees );
 printBtn.addEventListener('click', printResults);
+resetBtn.addEventListener('click', resetForm);
 
 
 /**
@@ -297,3 +299,36 @@ function printResults() {
   printWindow.document.close();
 }
 
+function resetForm() {
+  if (!confirm('Είστε σίγουροι ότι θέλετε να καθαρίσετε τη φόρμα; Όλα τα δεδομένα θα χαθούν!')) {
+    return;
+  }
+
+  // Reset month and year to current date
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11
+  const currentYear = currentDate.getFullYear();
+
+  document.getElementById('month').value = currentMonth;
+
+  // Check if the current year exists in the dropdown, if not add it
+  const yearSelect = document.getElementById('year');
+  if (!Array.from(yearSelect.options).some(option => option.value === currentYear.toString())) {
+    const option = document.createElement('option');
+    option.value = currentYear;
+    option.textContent = currentYear;
+    yearSelect.appendChild(option);
+  }
+  yearSelect.value = currentYear;
+
+  // Clear expense inputs
+  document.getElementById('cleaning').value = '';
+  document.getElementById('electricity').value = '';
+  document.getElementById('elevator').value = '';
+  document.getElementById('water').value = '';
+  document.getElementById('other').value = '';
+
+  // Clear results
+  resultsBody.innerHTML = '';
+  totalSqmAmount.textContent = '0.00 €';
+}
