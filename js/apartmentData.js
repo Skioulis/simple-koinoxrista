@@ -6,6 +6,11 @@ const apartmentsData = [
     { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27 }
 ];
 
+const apartmentsDataElectricity = [
+    { apartmentName: "ΜΗΤΣΙΟΥ", percentage : 66 },
+    { apartmentName: "ΧΑΛΗΣ", percentage : 34 }
+];
+
 // const greekMonths = [];
 // for (let i = 0; i < 12; i++) {
 //     // Create a date for the 1st of each month

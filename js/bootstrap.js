@@ -78,7 +78,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap util/index.js
+   * Bootstrap util/fees.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
