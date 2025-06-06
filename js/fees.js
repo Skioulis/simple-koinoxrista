@@ -91,6 +91,8 @@ resetBtn.addEventListener('click', resetForm);
  * - apartment-sqm: for area/millimeters input
  */
 
+
+
 function renderApartments(apartments) {
   listContainer.innerHTML = ''; // Clear previous content
   apartments.forEach(apartment => {
