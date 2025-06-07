@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// calculateBtn.addEventListener('click', calculateFees );
+
+
+calculateBtn.addEventListener('click', calculateElectricity );
 // printBtn.addEventListener('click', printResults);
 
 
@@ -80,4 +82,38 @@ function resetForm() {
     // Clear results
     resultsBody.innerHTML = '';
     totalSqmAmount.textContent = '0.00 €';
+}
+
+function calculateElectricity() {
+    const apartments = document.querySelectorAll('.apartment-item');
+    // console.log(apartments[0]);
+    let totalCoverage = 0;
+    const apartmentsData = [];
+    apartments.forEach(apartment => {
+        totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
+        apartmentsData.push({
+            apartmentName: apartment.querySelector('.apartment-name').value,
+            millimeters: apartment.querySelector('.apartment-sqm').value,
+            fees: 0
+        });
+    })
+    console.log(apartmentsData);
+
+    const inputFields = [
+        {id: 'lastMeasurement', parse: (v) => parseInt(v) || 0},
+        {id: 'currentMeasurement', parse: (v) => parseInt(v) || 0},
+        {id: 'powerConsumption', parse: (v) => parseInt(v) || 0},
+        {id: 'fees', parse: (v) => parseFloat(v) || 0},
+        {id: 'bill', parse: (v) => parseFloat(v) || 0}
+    ].map(field => ({...field, value: field.parse(document.getElementById(field.id).value)}));
+
+    const [lastMeasurement, currentMeasurement, powerConsumption, fees, bill] = inputFields.map(field => field.value);
+
+    if (lastMeasurement === 0 || currentMeasurement === 0 || powerConsumption === 0 || fees === 0 || bill === 0) {
+        alert('Παρακαλώ συμπληρώστε όλα τα πεδία!');
+        return;
+    }
+     console.log(inputFields);
+
+
 }
