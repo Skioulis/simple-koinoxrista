@@ -85,6 +85,7 @@ function resetForm() {
 }
 
 function calculateElectricity() {
+    resultsBody.innerHTML = '';
     const apartments = document.querySelectorAll('.apartment-item');
     // console.log(apartments[0]);
     let totalCoverage = 0;
@@ -93,11 +94,13 @@ function calculateElectricity() {
         totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
         apartmentsData.push({
             apartmentName: apartment.querySelector('.apartment-name').value,
-            millimeters: apartment.querySelector('.apartment-sqm').value,
-            fees: 0
+            millimeters: parseFloat(apartment.querySelector('.apartment-sqm').value),
+            fees: 0,
+            electricity: 0,
+            total: 0
         });
     })
-    console.log(apartmentsData);
+    // console.log(apartmentsData);
 
     const inputFields = [
         {id: 'lastMeasurement', parse: (v) => parseInt(v) || 0},
@@ -113,7 +116,27 @@ function calculateElectricity() {
         alert('Παρακαλώ συμπληρώστε όλα τα πεδία!');
         return;
     }
-     console.log(inputFields);
+     // console.log(inputFields);
 
 
+    apartmentsData[1].electricity = parseFloat((((currentMeasurement - lastMeasurement) / powerConsumption) * (bill - fees)).toFixed(2));
+    apartmentsData[0].electricity = parseFloat((((powerConsumption - (currentMeasurement - lastMeasurement) ) / powerConsumption) * (bill - fees)).toFixed(2));
+
+    let totalFees = 0;
+    apartmentsData.forEach(apartment => {
+        apartment.fees = parseFloat((fees * (apartment.millimeters / totalCoverage)).toFixed(2));
+        apartment.total = parseFloat((apartment.electricity + apartment.fees).toFixed(2));
+        totalFees += apartment.total;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+                <td>${apartment.apartmentName}</td>
+                <td>${apartment.millimeters}</td>
+                <td><strong>${apartment.total} €</strong></td>
+            `;
+
+        resultsBody.appendChild(row);
+    })
+
+    totalSqmAmount.textContent = totalFees;    //  console.log(apartmentsData);
 }
