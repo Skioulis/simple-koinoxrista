@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 calculateBtn.addEventListener('click', calculateElectricity );
-// printBtn.addEventListener('click', printResults);
+printBtn.addEventListener('click', printResults);
 
 
 resetBtn.addEventListener('click', resetForm);
@@ -139,4 +139,53 @@ function calculateElectricity() {
     })
 
     totalSqmAmount.textContent = totalFees;    //  console.log(apartmentsData);
+}
+
+function printResults() {
+    // First make sure we have results to print
+    if (document.querySelectorAll('#resultsBody tr').length === 0) {
+        alert('Παρακαλώ υπολογίστε πρώτα τα κοινόχρηστα για να εκτυπώσετε τα αποτελέσματα!');
+        return;
+    }
+
+
+
+
+    // Create a printable version
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Κοινόχρηστα - Εκτύπωση</title>
+                <link href="css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { padding: 20px; }
+                    @media print {
+                        .no-print { display: none; }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1 class="text-center mb-4">Υπολογισμός Ρεύματος</h1>
+                    
+                   
+
+                    <h4>Αποτελέσματα:</h4>
+                    <div class="table-responsive">
+                        ${document.querySelector('.table-responsive').innerHTML}
+                    </div>
+
+                    <div class="row mt-4 no-print">
+                        <div class="col-12 text-center">
+                            <button onclick="window.print()" class="btn btn-primary">Εκτύπωση</button>
+                            <button onclick="window.close()" class="btn btn-secondary">Κλείσιμο</button>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+    printWindow.document.close();
 }
