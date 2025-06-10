@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ρεύμα</title>
+    <title>Νερό</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -19,7 +19,7 @@
 <div class="container">
     <header class="py-3 mb-4 border-bottom">
         <div class="container d-flex flex-wrap justify-content-between">
-            <span class="fs-4 fw-bold text-primary">Υπολογισμός ρεύματος</span>
+            <span class="fs-4 fw-bold text-primary">Υπολογισμός Νερού</span>
             <a href="index.html" class="btn btn-outline-primary">Επιστροφή στην Αρχική</a>
 
         </div>
@@ -27,38 +27,115 @@
 
     <div class="p-4 mb-4 bg-light rounded-3">
         <div class="container-fluid py-2">
-            <h1 class="display-5 fw-bold">Υπολογισμός ρεύματος</h1>
-            <p class="col-md-8 fs-5">Εύκολος υπολογισμός κοινόχρηστου ρεύματος της πολυκατοικίας των 2 διαμερισμάτων.</p>
+            <h1 class="display-5 fw-bold">Υπολογισμός Νερού</h1>
+            <p class="col-md-8 fs-5">Εύκολος υπολογισμός κοινόχρηστου Νερού της πολυκατοικίας των 2 διαμερισμάτων.</p>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5>Κοινόχρηστο Ρεύμα</h5>
+                    <h5>Κοινόχρηστο Νερό</h5>
                 </div>
                 <div class="card-body">
 
-                    <div class="form-group">
-                        <label for="lastMeasurement">Προηγούμενη Ένδειξη (kWH)</label>
-                        <input type="number" class="form-control" id="lastMeasurement" step="1" min="0">
+                    <div class="row">
+                        <div class="col-12 text-center mt-2 mb-2">
+                            <h6 class="fw-bold">Κοινόχρηστο Νερό</h6>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="currentMeasurement">Τωρινή Ένδειξη (kWH)</label>
-                        <input type="number" class="form-control" id="currentMeasurement" step="1" min="0"">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastMeasurementCommon">Προηγούμενη Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="lastMeasurementCommon" step="1" min="0">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="currentMeasurementCommon">Τωρινή Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="currentMeasurementCommon" step="1" min="0">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="powerConsumption">Ολική Κατανάλωση Ρεύματος (kWH)</label>
-                        <input type="number" class="form-control" id="powerConsumption" step="1" min="0">
+                    <div class="row">
+                        <div class="col-12 text-center mt-2 mb-2">
+                            <h6 class="fw-bold">Πρώτος Όροφος</h6>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="fees">Χρεώσεις Δήμου & ΕΡΤ (€)</label>
-                        <input type="number" class="form-control" id="fees" step="0.01" min="0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastMeasurementFirstFloor">Προηγούμενη Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="lastMeasurementFirstFloor" step="1" min="0">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="currentMeasurementFirstFloor">Τωρινή Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="currentMeasurementFirstFloor" step="1" min="0">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="bill">Ποσό Λογαριασμού (€)</label>
-                        <input type="number" class="form-control" id="bill" step="0.01" min="0">
+                    <div class="row">
+                        <div class="col-12 text-center mt-2 mb-2">
+                            <h6 class="fw-bold">Δεύτερος/Τρίτος Όροφος</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastMeasurementSecondFloor">Προηγούμενη Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="lastMeasurementSecondFloor" step="1" min="0">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="currentMeasurementSecondFloor">Τωρινή Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="currentMeasurementSecondFloor" step="1" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center mt-2 mb-2">
+                            <h6 class="fw-bold">Τέταρτος Όροφος Διαμέρισμα 1</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastMeasurementD1Floor">Προηγούμενη Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="lastMeasurementD1Floor" step="1" min="0">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="currentMeasurementD1Floor">Τωρινή Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="currentMeasurementD1Floor" step="1" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center mt-2 mb-2">
+                            <h6 class="fw-bold">Τέταρτος Όροφος Διαμέρισμα 2</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastMeasurementD1Floor">Προηγούμενη Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="lastMeasurementD2Floor" step="1" min="0">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="currentMeasurementD1Floor">Τωρινή Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="currentMeasurementD2Floor" step="1" min="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,6 +238,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
 
 <script src="js/apartmentData.js"></script>
-<script src="js/electricity.js"></script>
+<script src="js/water.js"></script>
 </body>
 </html>
