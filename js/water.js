@@ -45,13 +45,13 @@ function renderApartments(apartments) {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Προηγούμενη Ένδειξη (m³)</label>
-                                        <input type="text" class="form-control apartment-name" placeholder="π.χ. Διαμ. 1" value="${apartment.lastReading}">
+                                        <input type="text" class="form-control apartment-last-reading" placeholder="π.χ. Διαμ. 1" value="${apartment.lastReading}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Τωρινή Ένδειξη (m³)</label>
-                                        <input type="number" class="form-control apartment-sqm" step="0.01" min="0" value="${apartment.currentReading}">
+                                        <input type="number" class="form-control apartment-current-reading" step="0.01" min="0" value="${apartment.currentReading}">
                                     </div>
                                 </div>
                             </div>
@@ -168,53 +168,72 @@ function resetForm() {
 function calculateWaterExpenses() {
     const apartments = document.querySelectorAll('.apartment-item');
     // console.log(apartments);
-    let totalCoverage =0;
+    let totalCoverage = 0;
     const apartmentsData = [];
     // This loop populates the apartmentsData array with each apartment's name and millimeters
     apartments.forEach(apartment => {
-        totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
+        // totalCoverage += parseFloat(apartment.querySelector('.apartment-sqm').value);
         apartmentsData.push({
             apartmentName: apartment.querySelector('.apartment-name').value,
-            millimeters: apartment.querySelector('.apartment-sqm').value,
+            millimeters: parseFloat(apartment.querySelector('.apartment-sqm').value),
+            lastReading: parseFloat(apartment.querySelector('.apartment-last-reading').value) || 0,
+            currentReading: parseFloat(apartment.querySelector('.apartment-current-reading').value) || 0,
+            volume: apartment.querySelector('.apartment-current-reading').value - apartment.querySelector('.apartment-last-reading').value,
             fees: 0
-        });    })
+        });
+    })
+
 
 
 
     const inputFields = [
-        {id: 'month', parse: (v) => v},
-        {id: 'year', parse: (v) => v},
-        {id: 'cleaning', parse: (v) => parseFloat(v) || 0},
-        {id: 'electricity', parse: (v) => parseFloat(v) || 0},
-        {id: 'elevator', parse: (v) => parseFloat(v) || 0},
-        {id: 'water', parse: (v) => parseFloat(v) || 0},
-        {id: 'other', parse: (v) => parseFloat(v) || 0}
+        {id: 'lastMeasurementFirst', parse: (v) => parseInt(v)},
+        {id: 'currentMeasurementFirst', parse: (v) => parseInt(v)},
+        {id: 'firstBill', parse: (v) => parseFloat(v) || 0},
+        {id: 'lastMeasurementSecond', parse: (v) => parseInt(v)},
+        {id: 'currentMeasurementSecond', parse: (v) => parseInt(v)},
+        {id: 'secondBill', parse: (v) => parseFloat(v) || 0},
     ].map(field => ({...field, value: field.parse(document.getElementById(field.id).value)}));
 
-    const [month, year, cleaningFee, electricityFee, elevatorFee, waterFee, otherFee] =
-        inputFields.map(field => field.value);
+    const [lastMeasurementFirst, currentMeasurementFirst, firstBill,
+        lastMeasurementSecond, currentMeasurementSecond, secondBill] = inputFields.map(field => field.value);
 
-    const totalFees = (cleaningFee + electricityFee + elevatorFee + waterFee + otherFee).toFixed(2);
+    const volumeFirst = currentMeasurementFirst - lastMeasurementFirst;
+    const volumeSecond = currentMeasurementSecond - lastMeasurementSecond;
 
-    let sumOfFees = 0;
+    console.log(volumeFirst)
+    console.log(volumeSecond)
+    console.log(apartmentsData);
+    let totalOne = apartmentsData[0].volume + apartmentsData[1].volume + apartmentsData[3].volume + apartmentsData[4].volume;
+    let totalTwo = apartmentsData[2].volume + apartmentsData[5].volume;
+    console.log(totalOne)
+    let volumesOne;
 
-    resultsBody.innerHTML = '';
 
-    apartmentsData.forEach(apartment => {
-        apartment.fees = ((apartment.millimeters / totalCoverage) * totalFees).toFixed(2);
-        sumOfFees += parseFloat(apartment.fees);
+    function divideFess (volumes){
 
-        const row = document.createElement('tr');
-        row.innerHTML = `
-                <td>${apartment.apartmentName}</td>
-                <td>${apartment.millimeters}</td>
-                <td><strong>${apartment.fees} €</strong></td>
-            `;
+    }
 
-        resultsBody.appendChild(row);
-    })
-    totalSqmAmount.textContent = totalFees;
-
+    // const totalFees = (cleaningFee + electricityFee + elevatorFee + waterFee + otherFee).toFixed(2);
+    //
+    // let sumOfFees = 0;
+    //
+    // resultsBody.innerHTML = '';
+    //
+    // apartmentsData.forEach(apartment => {
+    //     apartment.fees = ((apartment.millimeters / totalCoverage) * totalFees).toFixed(2);
+    //     sumOfFees += parseFloat(apartment.fees);
+    //
+    //     const row = document.createElement('tr');
+    //     row.innerHTML = `
+    //             <td>${apartment.apartmentName}</td>
+    //             <td>${apartment.millimeters}</td>
+    //             <td><strong>${apartment.fees} €</strong></td>
+    //         `;
+    //
+    //     resultsBody.appendChild(row);
+    // })
+    // totalSqmAmount.textContent = totalFees;
 
 
 }
