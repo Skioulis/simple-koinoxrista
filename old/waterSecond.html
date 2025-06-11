@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Νερό</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Νερό xaxaxaxa</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             padding-top: 2rem;
@@ -20,7 +20,7 @@
     <header class="py-3 mb-4 border-bottom">
         <div class="container d-flex flex-wrap justify-content-between">
             <span class="fs-4 fw-bold text-primary">Υπολογισμός Νερού</span>
-            <a href="index.html" class="btn btn-outline-primary">Επιστροφή στην Αρχική</a>
+            <a href="../index.html" class="btn btn-outline-primary">Επιστροφή στην Αρχική</a>
 
         </div>
     </header>
@@ -39,34 +39,7 @@
                     <h5>Κοινόχρηστο Νερό</h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 text-center mt-2 mb-2">
-                            <h6 class="fw-bold">Λογαριασμός Κοινόχρηστου, Πρώτου και Τέταρτου Ορόφου</h6>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="lastMeasurementFirst">Προηγούμενη Ένδειξη (m³)</label>
-                                <input type="number" class="form-control" id="lastMeasurementFirst" step="1" min="0" value="747">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="currentMeasurementFirst">Τωρινή Ένδειξη (m³)</label>
-                                <input type="number" class="form-control" id="currentMeasurementFirst" step="1" min="0" value="816">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="firstBill">Ποσό πληρωμής (€)</label>
-                                <input type="number" class="form-control" id="firstBill" step="0.01" min="0" value="139.73">
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-12 text-center mt-2 mb-2">
@@ -77,22 +50,22 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="lastMeasurementSecond">Προηγούμενη Ένδειξη (m³)</label>
-                                <input type="number" class="form-control" id="lastMeasurementSecond" step="1" min="0" value="1189">
+                                <label for="lastMeasurement">Προηγούμενη Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="lastMeasurement" step="1" min="0" value="1189">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="currentMeasurementSecond">Τωρινή Ένδειξη (m³)</label>
-                                <input type="number" class="form-control" id="currentMeasurementSecond" step="1" min="0" value="1228">
+                                <label for="currentMeasurement">Τωρινή Ένδειξη (m³)</label>
+                                <input type="number" class="form-control" id="currentMeasurement" step="1" min="0" value="1228">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="firstBill">Ποσό πληρωμής (€)</label>
-                                <input type="number" class="form-control" id="secondBill" step="0.01" min="0" value="67.41">
+                                <label for="bill">Ποσό πληρωμής (€)</label>
+                                <input type="number" class="form-control" id="bill" step="0.01" min="0" value="67.41">
                             </div>
                         </div>
                     </div>
@@ -257,7 +230,6 @@
                             <thead>
                             <tr>
                                 <th>Διαμέρισμα</th>
-                                <th>Χιλιοστά</th>
                                 <th>Κατανάλωση (m³)</th>
                                 <th>Ποσό (€)</th>
                             </tr>
@@ -292,11 +264,11 @@
     </div>
 </footer>
 
-<script src="js/bootstrap.bundle.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
 
-<script src="js/apartmentData.js"></script>
-<!--<script src="js/water.js"></script>-->
-<script src="js/waterTwo.js"></script>
+<script src="../js/apartmentData.js"></script>
+<script src="waterCommon.js"></script>
+<script src="waterTwo.js"></script>
 </body>
 </html>
