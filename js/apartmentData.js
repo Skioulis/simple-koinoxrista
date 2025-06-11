@@ -15,6 +15,12 @@ const apartmentsDataWater = [
     { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27, lastReading: 4, currentReading: 8 }
 ];
 
+const apartmentsDataWaterTwo = [
+
+    { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 420.4, lastReading: 2, currentReading: 23 },
+    { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27, lastReading: 4, currentReading: 8 }
+];
+
 const apartmentsDataElectricity = [
     { apartmentName: "ΜΗΤΣΙΟΥ", percentage : 66 },
     { apartmentName: "ΧΑΛΗΣ", percentage : 34 }

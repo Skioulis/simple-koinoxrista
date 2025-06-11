@@ -88,7 +88,7 @@ function printResults() {
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
             <!DOCTYPE html>
-            <html>
+            <html lang="el">
             <head>
                 <title>Κοινόχρηστα - Εκτύπωση</title>
                 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -136,7 +136,7 @@ function resetForm() {
         return;
     }
 
-    // Reset month and year to current date
+    // Reset month and year to the current date
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11
     const currentYear = currentDate.getFullYear();
@@ -168,7 +168,7 @@ function resetForm() {
 function calculateWaterExpenses() {
     const apartments = document.querySelectorAll('.apartment-item');
     // console.log(apartments);
-    let totalCoverage = 0;
+
     const apartmentsData = [];
     // This loop populates the apartmentsData array with each apartment's name and millimeters
     apartments.forEach(apartment => {
@@ -198,21 +198,32 @@ function calculateWaterExpenses() {
     const [lastMeasurementFirst, currentMeasurementFirst, firstBill,
         lastMeasurementSecond, currentMeasurementSecond, secondBill] = inputFields.map(field => field.value);
 
-    const volumeFirst = currentMeasurementFirst - lastMeasurementFirst;
-    const volumeSecond = currentMeasurementSecond - lastMeasurementSecond;
-
-    console.log(volumeFirst)
-    console.log(volumeSecond)
-    console.log(apartmentsData);
     let totalOne = apartmentsData[0].volume + apartmentsData[1].volume + apartmentsData[3].volume + apartmentsData[4].volume;
     let totalTwo = apartmentsData[2].volume + apartmentsData[5].volume;
-    console.log(totalOne)
-    let volumesOne;
 
 
-    function divideFess (volumes){
+    /**
+     * Calculates the fees for each apartment based on their water volume usage and the total bill for two groups.
+     *
+     * The fees are calculated as a proportion of the apartment's water volume usage relative to the total volume
+     * of the group it belongs to, multiplied by the respective bill amount for that group.
+     *
+     * @param {Array} apartmentsData - Array of apartment objects containing volume and fees information.
+     * @param {number} totalOne - Total water volume for the first group of apartments.
+     * @param {number} totalTwo - Total water volume for the second group of apartments.
+     * @param {number} firstBill - Total bill amount for the first group of apartments.
+     * @param {number} secondBill - Total bill amount for the second group of apartments.
+     */
+    apartmentsData[0].fees = (apartmentsData[0].volume / totalOne * firstBill).toFixed(2); // Fee for apartment 0 in group one
+    apartmentsData[1].fees = (apartmentsData[1].volume / totalOne * firstBill).toFixed(2); // Fee for apartment 1 in group one
+    apartmentsData[2].fees = (apartmentsData[2].volume / totalTwo * secondBill).toFixed(2); // Fee for apartment 2 in group two
+    apartmentsData[3].fees = (apartmentsData[3].volume / totalOne * firstBill).toFixed(2); // Fee for apartment 3 in group one
+    apartmentsData[4].fees = (apartmentsData[4].volume / totalOne * firstBill).toFixed(2); // Fee for apartment 4 in group one
+    apartmentsData[5].fees = (apartmentsData[5].volume / totalTwo * secondBill).toFixed(2); // Fee for apartment 5 in group two
 
-    }
+    console.log(apartmentsData);
+
+
 
     // const totalFees = (cleaningFee + electricityFee + elevatorFee + waterFee + otherFee).toFixed(2);
     //
