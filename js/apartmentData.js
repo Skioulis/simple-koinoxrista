@@ -6,6 +6,20 @@ const apartmentsData = [
     { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27 }
 ];
 
+const apartmentsDataWaterOne = [
+    {apartmentName: "ΚΟΙΝΟΧΡΗΣΤΟ", millimeters: 0 , lastReading: 1, currentReading: 2},
+    { apartmentName: "ΤΣΑΝΤΕΚΙΔΗΣ", millimeters: 217.61, lastReading: 417, currentReading: 438},
+    { apartmentName: "ΜΗΤΣΙΟΥ", millimeters: 133.39, lastReading: 13, currentReading: 28 },
+    { apartmentName: "ΧΑΛΗΣ", millimeters: 71.33, lastReading: 10, currentReading: 19 },
+
+];
+
+const apartmentsDataWaterTwo = [
+
+    { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 420.4, lastReading: 2, currentReading: 23 },
+    { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27, lastReading: 4, currentReading: 8 }
+];
+
 const apartmentsDataElectricity = [
     { apartmentName: "ΜΗΤΣΙΟΥ", percentage : 66 },
     { apartmentName: "ΧΑΛΗΣ", percentage : 34 }

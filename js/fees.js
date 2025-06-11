@@ -91,8 +91,6 @@ resetBtn.addEventListener('click', resetForm);
  * - apartment-sqm: for area/millimeters input
  */
 
-
-
 function renderApartments(apartments) {
   listContainer.innerHTML = ''; // Clear previous content
   apartments.forEach(apartment => {
@@ -175,7 +173,7 @@ function renderApartments(apartments) {
 function calculateFees() {
   {
     const apartments = document.querySelectorAll('.apartment-item');
-    console.log(apartments);
+    // console.log(apartments);
     let totalCoverage =0;
     const apartmentsData = [];
     // This loop populates the apartmentsData array with each apartment's name and millimeters
