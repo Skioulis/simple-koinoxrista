@@ -4,6 +4,7 @@ const resultsBody = document.getElementById('resultsBody');
 const totalAmount = document.getElementById('totalAmount');
 const printBtn = document.getElementById('printBtn');
 const resetBtn = document.getElementById('resetBtn');
+const billTitle = document.getElementById('billTitle');
 const params = new URLSearchParams(window.location.search);
 const group = params.get('group');
 
@@ -12,14 +13,20 @@ calculateBtn.addEventListener('click', calculateWaterExpenses );
 printBtn.addEventListener('click', printWaterResults);
 resetBtn.addEventListener('click', resetWaterForm);
 
+
 document.addEventListener('DOMContentLoaded', () => {
     // Use apartmentsData directly
     // console.log(apartmentsData);
+    // console.log("bill title  is: "+billTitle.textContent);
 
     if (group === 'A') {
+        billTitle.innerHTML = "Λογαριασμός <span class='text-primary'>Κοινόχρηστο</span>, <span class='text-primary'>Πρώτου</span> και <span class='text-primary'>Τετάρτου</span> Ορόφου";
         renderApartmentsWater(apartmentsDataWaterOne);
+
+
     } else {
         renderApartmentsWater(apartmentsDataWaterTwo);
+        billTitle.innerHTML= "Λογαριασμός <span class='text-primary'>Δευτέρου</span>, <span class='text-primary'>Τρίτου</span> και <span class='text-primary'>Πέμπτου</span> Ορόφου";
     }
 
 
