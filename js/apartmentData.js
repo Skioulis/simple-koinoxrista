@@ -1,9 +1,9 @@
 const apartmentsData = [
-    { apartmentName: "τεστ", millimeters: 217.61 },
-    { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 420.4 },
-    { apartmentName: "ΜΗΤΣΙΟΥ", millimeters: 133.39 },
-    { apartmentName: "ΧΑΛΗΣ", millimeters: 71.33 },
-    { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27 }
+    { apartmentName: "A", millimeters: 217.61 },
+    { apartmentName: "ΒΓ", millimeters: 420.4 },
+    { apartmentName: "Δ1", millimeters: 133.39 },
+    { apartmentName: "Δ2", millimeters: 71.33 },
+    { apartmentName: "Ε", millimeters: 157.27 }
 ];
 
 const apartmentsDataWaterOne = [
