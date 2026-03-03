@@ -8,21 +8,21 @@ const apartmentsData = [
 
 const apartmentsDataWaterOne = [
     {apartmentName: "ΚΟΙΝΟΧΡΗΣΤΟ", millimeters: 0 , lastReading: 0, currentReading: 0},
-    { apartmentName: "ΤΣΑΝΤΕΚΙΔΗΣ", millimeters: 217.61, lastReading: 0, currentReading: 0},
-    { apartmentName: "ΜΗΤΣΙΟΥ", millimeters: 133.39, lastReading: 0, currentReading: 0 },
-    { apartmentName: "ΧΑΛΗΣ", millimeters: 71.33, lastReading: 0, currentReading: 0 },
+    { apartmentName: "Α", millimeters: 217.61, lastReading: 0, currentReading: 0},
+    { apartmentName: "Δ1", millimeters: 133.39, lastReading: 0, currentReading: 0 },
+    { apartmentName: "Δ2", millimeters: 71.33, lastReading: 0, currentReading: 0 },
 
 ];
 
 const apartmentsDataWaterTwo = [
 
-    { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 420.4, lastReading: 0, currentReading: 0 },
-    { apartmentName: "ΜΠΑΖΟΥΚΗΣ", millimeters: 157.27, lastReading: 0, currentReading: 0 }
+    { apartmentName: "ΒΓ", millimeters: 420.4, lastReading: 0, currentReading: 0 },
+    { apartmentName: "Ε", millimeters: 157.27, lastReading: 0, currentReading: 0 }
 ];
 
 const apartmentsDataElectricity = [
-    { apartmentName: "ΜΗΤΣΙΟΥ", percentage : 66 },
-    { apartmentName: "ΧΑΛΗΣ", percentage : 34 }
+    { apartmentName: "Δ1", percentage : 66 },
+    { apartmentName: "Δ2", percentage : 34 }
 ];
 
 // const greekMonths = [];
