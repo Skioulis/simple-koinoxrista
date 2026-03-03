@@ -1,5 +1,5 @@
 const apartmentsData = [
-    { apartmentName: "ΤΣΑΝΤΕΚΙΔΗΣ", millimeters: 217.61 },
+    { apartmentName: "τεστ", millimeters: 217.61 },
     { apartmentName: "ΑΓΓΕΛΙΔΟΥ", millimeters: 420.4 },
     { apartmentName: "ΜΗΤΣΙΟΥ", millimeters: 133.39 },
     { apartmentName: "ΧΑΛΗΣ", millimeters: 71.33 },
