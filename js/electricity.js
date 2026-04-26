@@ -4,12 +4,13 @@ const resultsBody = document.getElementById('resultsBody');
 const totalSqmAmount = document.getElementById('totalSqmAmount');
 const printBtn = document.getElementById('printBtn');
 const resetBtn = document.getElementById('resetBtn');
-
+const entantiToggle = document.getElementById('entantiToggle');
 
 document.addEventListener('DOMContentLoaded', () => {
     // Use apartmentsData directly
     // console.log(apartmentsData);
     renderApartments(apartmentsDataElectricity);
+    toggleEntantiFields();
 
 });
 
@@ -20,6 +21,8 @@ printBtn.addEventListener('click', printResults);
 
 
 resetBtn.addEventListener('click', resetForm);
+entantiToggle.addEventListener('change', toggleEntantiFields);
+
 
 
 
@@ -64,6 +67,18 @@ function renderApartments(apartments) {
     });
 }
 
+function toggleEntantiFields() {
+    document.querySelectorAll('.measurement-field').forEach(field => {
+        field.classList.toggle('d-none', entantiToggle.checked);
+    });
+
+    if (entantiToggle.checked) {
+        document.getElementById('lastMeasurement').value = '';
+        document.getElementById('currentMeasurement').value = '';
+        document.getElementById('powerConsumption').value = '';
+    }
+}
+
 function resetForm() {
     if (!confirm('Είστε σίγουροι ότι θέλετε να καθαρίσετε τη φόρμα; Όλα τα δεδομένα θα χαθούν!')) {
         return;
@@ -78,6 +93,7 @@ function resetForm() {
     document.getElementById('powerConsumption').value = '';
     document.getElementById('fees').value = '';
     document.getElementById('bill').value = '';
+    entantiToggle.checked = false;
 
     // Clear results
     resultsBody.innerHTML = '';
@@ -102,30 +118,43 @@ function calculateElectricity() {
     })
     // console.log(apartmentsData);
 
-    const inputFields = [
-        {id: 'lastMeasurement', parse: (v) => parseInt(v) || 0},
-        {id: 'currentMeasurement', parse: (v) => parseInt(v) || 0},
-        {id: 'powerConsumption', parse: (v) => parseInt(v) || 0},
-        {id: 'fees', parse: (v) => parseFloat(v) || 0},
-        {id: 'bill', parse: (v) => parseFloat(v) || 0}
-    ].map(field => ({...field, value: field.parse(document.getElementById(field.id).value)}));
+    const fees = parseFloat(document.getElementById('fees').value) || 0;
+    const bill = parseFloat(document.getElementById('bill').value) || 0;
 
-    const [lastMeasurement, currentMeasurement, powerConsumption, fees, bill] = inputFields.map(field => field.value);
-
-    if (lastMeasurement === 0 || currentMeasurement === 0 || powerConsumption === 0 || fees === 0 || bill === 0) {
+    if (fees === 0 || bill === 0) {
         alert('Παρακαλώ συμπληρώστε όλα τα πεδία!');
         return;
     }
-     // console.log(inputFields);
 
+    if (entantiToggle.checked) {
+        apartmentsData.forEach(apartment => {
+            apartment.total = parseFloat((bill * (apartment.millimeters / totalCoverage)).toFixed(2));
+        });
+    } else {
+        const inputFields = [
+            {id: 'lastMeasurement', parse: (v) => parseInt(v) || 0},
+            {id: 'currentMeasurement', parse: (v) => parseInt(v) || 0},
+            {id: 'powerConsumption', parse: (v) => parseInt(v) || 0}
+        ].map(field => ({...field, value: field.parse(document.getElementById(field.id).value)}));
 
-    apartmentsData[1].electricity = parseFloat((((currentMeasurement - lastMeasurement) / powerConsumption) * (bill - fees)).toFixed(2));
-    apartmentsData[0].electricity = parseFloat((((powerConsumption - (currentMeasurement - lastMeasurement) ) / powerConsumption) * (bill - fees)).toFixed(2));
+        const [lastMeasurement, currentMeasurement, powerConsumption] = inputFields.map(field => field.value);
+
+        if (lastMeasurement === 0 || currentMeasurement === 0 || powerConsumption === 0) {
+            alert('Παρακαλώ συμπληρώστε όλα τα πεδία!');
+            return;
+        }
+
+        apartmentsData[1].electricity = parseFloat((((currentMeasurement - lastMeasurement) / powerConsumption) * (bill - fees)).toFixed(2));
+        apartmentsData[0].electricity = parseFloat((((powerConsumption - (currentMeasurement - lastMeasurement) ) / powerConsumption) * (bill - fees)).toFixed(2));
+
+        apartmentsData.forEach(apartment => {
+            apartment.fees = parseFloat((fees * (apartment.millimeters / totalCoverage)).toFixed(2));
+            apartment.total = parseFloat((apartment.electricity + apartment.fees).toFixed(2));
+        });
+    }
 
     let totalFees = 0;
     apartmentsData.forEach(apartment => {
-        apartment.fees = parseFloat((fees * (apartment.millimeters / totalCoverage)).toFixed(2));
-        apartment.total = parseFloat((apartment.electricity + apartment.fees).toFixed(2));
         totalFees += apartment.total;
 
         const row = document.createElement('tr');
